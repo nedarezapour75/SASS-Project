@@ -1,0 +1,518 @@
+@import url(-variable.scss);
+//mixins
+@mixin flex($flex: flex, $position-x: center, $position-y: center) {
+  display: $flex;
+  justify-content: $position-x;
+  align-items: $position-y;
+}
+@mixin margin-padding($top, $right, $bottom, $left, $margin: false) {
+  @if ($margin) {
+    margin: $top $right $bottom $left;
+  } @else {
+    padding: $top $right $bottom $left;
+  }
+}
+
+@mixin section-creator($flex: flex, $flex-basis, $max-width) {
+  display: flex;
+  flex-basis: flex-basis;
+  max-width: $max-width;
+}
+@mixin border-radious($top-left, $top-right, $bottom-right, $bottom-left) {
+  border-radius: $top-left $top-right $bottom-right $bottom-left;
+}
+//reset
+@font-face {
+  font-family: Vazir-Medium;
+  src: url(#{$font-root}/Vazir-Medium.eot) format("eot"),
+    url(#{$font-root}/Vazir-Medium.woff) format("woff"),
+    url(#{$font-root}/Vazir-Medium.woff2) format("woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+* {
+  font-family: Vazir-Medium;
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: $font-color;
+}
+//piblic styles
+.container {
+  max-width: 1170px;
+  margin: auto;
+  position: relative;
+}
+.row {
+  @include flex(flex, center, null);
+}
+.img-fluid {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.mt-250 {
+  margin-top: 250px;
+}
+//menu styles
+#nav {
+  .navbar {
+    font-size: $font-size;
+    height: 60px;
+    @include flex(flex, space-between, null);
+    @include margin-padding(24px, 0, 24px, 0, null);
+    ul {
+      li {
+        position: relative;
+        display: inline-block;
+        line-height: 60px;
+        cursor: pointer;
+        @include margin-padding(0px, 10px, 0px, 10px, false);
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 0;
+          height: 2px;
+          background-color: rgb(54, 114, 228);
+          transition: all 0.5s ease;
+        }
+        &:hover::after {
+          width: 100%;
+        }
+        a {
+          transition: all 0.5s ease;
+          // &:hover{
+          //     color:rgb(54, 114, 228) ;
+          // }
+        }
+        &:hover a {
+          color: rgb(83, 131, 221);
+        }
+      }
+    }
+    span.social-icons {
+      direction: ltr;
+      @include margin-padding(21px, 0, 0, 0, false);
+      a {
+        color: $font-color;
+        @include margin-padding(0, 5px, 0, 5px, false);
+        i {
+          transition: all 0.5s ease;
+        }
+        &:hover i {
+          color: rgb(83, 131, 221);
+        }
+      }
+    }
+  }
+}
+
+//header-style
+#header {
+  header {
+    width: 100%;
+    @include margin-padding(100px, 0, 0, 0);
+    @include flex(flex, space-between, flex-start);
+    .right {
+      @include section-creator(flex, 67%, 67%);
+      position: relative;
+      .grear-1 {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        font-size: $font-size + 24px;
+        color: rgb(107, 107, 107);
+        animation: gear-1 13s linear infinite;
+      }
+      @keyframes gear-1 {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .grear-2 {
+        position: absolute;
+        top: 0;
+        right: 0px;
+        font-size: $font-size + 4px;
+        color: rgb(78, 78, 78);
+        animation: gear-2 13s linear infinite;
+      }
+      @keyframes gear-2 {
+        100% {
+          transform: rotate(-360deg);
+        }
+      }
+      .sq-1 {
+        position: absolute;
+        top: 0;
+        left: 80px;
+        width: 20px;
+        height: 20px;
+        border: 4px solid #efefef;
+        animation: sq-1 15s infinite linear;
+      }
+      @keyframes sq-1 {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .sq-2 {
+        position: absolute;
+        bottom: -20px;
+        left: 130px;
+        width: 40px;
+        height: 40px;
+        border: 4px solid #ff7373;
+        animation: sq-2 35s infinite linear;
+      }
+      @keyframes sq-2 {
+        100% {
+          transform: rotate(-360deg);
+        }
+      }
+      .sq-3 {
+        position: absolute;
+        bottom: -5px;
+        right: 80px;
+        width: 30px;
+        height: 30px;
+        border: 4px solid #efefef;
+        animation: sq-3 15s infinite linear;
+      }
+      @keyframes sq-3 {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+    .left {
+      @include section-creator(flex, 33%, 33%);
+      @include margin-padding(17%, 0, 0, 0, flase);
+      h1 {
+        font-size: $font-size + 18px;
+        @include margin-padding(0, 0, 30px, 0, true);
+      }
+    }
+  }
+}
+
+//course style
+#course {
+  @extend .mt-250;
+  position: relative;
+  .pipe {
+    position: absolute;
+    width: 1726px;
+    height: 370px;
+    background-color: rgba($color: #e7e7e7, $alpha: 0.8);
+    top: 83px;
+    left: -256px;
+    @include border-radious(0, 250px, 250px, 0);
+  }
+  .row {
+    .course {
+      flex-direction: column;
+      @include section-creator(flex, 30%, 30%);
+      background-color: white;
+      position: relative;
+      border-bottom: 4px solid red;
+      @include border-radious(0, 0, 5px, 5px);
+      cursor: pointer;
+      @include margin-padding(0, 16px, 0, 16px, true);
+      transition: box-shadow 0.5s ease;
+      &:hover {
+        box-shadow: 0 0 13px 0 rgba($color: #979797, $alpha: 0.5);
+      }
+      &:hover .teacher {
+        top: -54px;
+      }
+      &:hover .teacher-name {
+        width: 200px;
+      }
+      .status {
+        position: absolute;
+        font-size: $font-size - 4px;
+        left: 10px;
+        top: 10px;
+        background-color: rgba(45, 125, 222, 0.5);
+        color: white;
+        @include margin-padding(2px, 6px, 2px, 6px, false);
+        @include border-radious(2px, 2px, 2px, 2px);
+      }
+      img.teacher {
+        position: absolute;
+        top: -34px;
+        right: 9px;
+        width: 54px;
+        z-index: -1;
+        transition: top 1s ease;
+      }
+      .teacher-name {
+        position: absolute;
+        top: -30px;
+        right: 70px;
+        font-size: $font-size - 3px;
+        z-index: -2;
+        width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: all 1s ease;
+      }
+      a {
+        @include margin-padding(10px, 10px, 10px, 10px, true);
+        font-size: $font-size + 2px;
+        color: $font-color;
+      }
+      .meta {
+        display: flex;
+        @include margin-padding(0, 10px, 0, 10px, true);
+        @include margin-padding(16px, 0px, 12px, 0px, false);
+        border-top: 1px solid #efefef;
+        .clock {
+          // margin-left: auto;
+          @include margin-padding(0, 0px, 0, auto, true);
+          i {
+            color: #45a1ff;
+            font-size: $font-size - 2px;
+            @include margin-padding(0, 0px, 0, 3px, true);
+          }
+        }
+        span:nth-child(2) {
+          // margin-left: auto;
+          font-size: $font-size - 2px;
+          @include margin-padding(0, 8px, 0, 8px, false);
+          color: #37b537;
+          text-shadow: 0 0 2px rgba($color: #000000, $alpha: 0.5);
+        }
+      }
+    }
+  }
+}
+
+//path style
+#path {
+  .path {
+    @include flex(flex, space-between, null);
+    @include margin-padding(0px, auto, 100px, auto, true);
+    .right-side {
+      @include section-creator(flex, 50%, 50%);
+    }
+    .left-side {
+      @include section-creator(flex, 45%, 45%);
+      .path-title {
+        @include flex(flex, center, center);
+        flex-direction: column;
+        h2 {
+          font-size: $font-size + 10px;
+          margin-bottom: 34px;
+          color: $font-color;
+        }
+        p {
+          font-size: $font-size + 2px;
+          line-height: 42px;
+          color: #868383;
+        }
+      }
+    }
+  }
+}
+
+//topic style
+#topic {
+    position: relative;
+    &::after,
+    &::before{
+        position: absolute;
+        background-color: rgba($color: #b1adad, $alpha: 0.08);
+        width: 200px;
+        content: '';
+        bottom: 90px;
+        left: -230px;
+        height: 250px;
+        transform: skewX(10deg);
+        @include border-radious(0, 20px, 50px, 0)
+    }
+    &::before{
+        bottom: 189px;
+        left: -220px;
+    }
+  .topic-title {
+    font-size: $font-size + 10px;
+    margin-bottom: 30px;
+    border-right: 5px solid red;
+    @include margin-padding(0, 10px, 0, 0, false);
+  }
+  .topic {
+    @include flex(flex, space-between, null);
+    @include margin-padding(0, 0, 20px, 0, true);
+    .card {
+      @include section-creator(flex, 49%, 49%);
+      border: 1px solid #efefef;
+      @include border-radious(3px, 3px, 3px, 3px);
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+      &:hover .topic-img::after {
+        opacity: 0.6;
+      }
+      .topic-img {
+        @include section-creator(flex, 30%, 30%);
+        overflow: hidden;
+        position: relative;
+        &::after {
+          content: "";
+          width: 100%;
+          height: 100%;
+          background-color: black;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+      }
+      .topic-details {
+        @include section-creator(flex, 70%, 70%);
+        flex-direction: column;
+        @include margin-padding(22px, 22px, 22px, 22px, false);
+        position: relative;
+        &::after {
+          content: "";
+          width: 37px;
+          height: 148%;
+          background-color: white;
+          position: absolute;
+          top: -25px;
+          right: -23px;
+          transform: rotate(5deg);
+        }
+        a {
+          font-size: $font-size + 2px;
+        }
+        .meta {
+          font-size: $font-size - 4px;
+          margin-top: 15px;
+          color: #ccc;
+          @include margin-padding(15px, 0, 0, 0, true);
+          span {
+            @include margin-padding(0, 0, 0, 16px, true);
+          }
+        }
+        p {
+          font-size: $font-size - 2px;
+          @include margin-padding(20px, 0, 0, 0, true);
+          line-height: 30px;
+          color: #757575;
+        }
+      }
+    }
+  }
+}
+
+//footer styles
+#footer{
+  @include margin-padding(80px, 0, 0, 0, false);
+  background-color: #353731;
+  .container{
+.footer{
+@include flex(flex, space-between, flex-start);
+  .side-1{
+    @include section-creator(flex, 30%, 30%);
+    @include flex(flex, center, flex-start);
+    flex-direction: column;
+    // @include margin-padding(0, 200px, 0, 200px, true);
+
+    h5{
+      color: white;
+      @include margin-padding(0, 0, 32px,0 , true);
+    }
+    ul{
+      font-size: $font-size - 1px ;
+      @include margin-padding(0, 0, 40px,0 , true);
+li{
+@include margin-padding(0, 0, 18px,0 , true);
+color: #cacaca;
+i{
+@include margin-padding(0, 0, 0,12px , true);
+
+}
+}
+    }
+  }
+  .side-2{
+    @include section-creator(flex, 30%, 30%);
+    // @include flex(flex, center, flex-start);
+ul{
+font-size: $font-size - 1px;
+@include margin-padding(0, 0, 0,40px , true);
+li{
+  @include margin-padding(0, 0, 0,16px , true);
+a{
+color: #cacaca;
+transition: color .5s ease;
+&:hover{
+color: yellow;
+}
+}
+}
+}
+  }
+  .side-3{
+    @include section-creator(flex, 30%, 30%);
+flex-direction: column;
+p{
+  color: white;
+  @include margin-padding(0, 0, 26px,0 , true);
+  font-size: 16px;
+color: yellow;
+width: 100%;
+text-align: center;
+}
+form{
+  position: relative;
+  input.email{
+width: 100%;
+height: 35px;
+@include margin-padding(10px, 10px, 10px, 10px, false);
+border: 0;
+@include border-radious(5px, 5px, 5px, 5px);
+outline: 0;
+  }
+  .submit{
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    border: 0;
+background-color: transparent;
+outline: 0;
+cursor: pointer;
+transition: color .5s ease;
+&:hover{
+  color: rgb(63, 130, 247);
+}
+  }
+}
+  }
+}
+  }
+  .copyright{
+    background-color: 2b2d30;
+    text-align: center;
+    @include margin-padding(30px,0 ,30px ,0 ,false );
+    color: #cacaca;
+    font-size: $font-size - 2px;
+  }
+}
